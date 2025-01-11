@@ -14,6 +14,9 @@ class Category(models.Model):
         db_table = 'categories'
         verbose_name = _('Category')
         verbose_name_plural = _('categories')
+
+    def __str__(self):
+        return self.title
 class Product(models.Model):
     categories = models.ManyToManyField(Category, verbose_name=_('categories'), blank= True)
     title = models.CharField(_('title'), max_length=50)
