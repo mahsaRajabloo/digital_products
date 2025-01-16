@@ -1,5 +1,7 @@
 from django.contrib import admin
 
+from import_export.admin import ImportExportModelAdmin
+
 from .models import *
 
 @admin.register(Category)
@@ -10,11 +12,11 @@ class CategoryAdmin(admin.ModelAdmin):
 
 class FileInlineAdmin(admin.StackedInline):
     model = ProductFile
-    fields = ['title', 'file', 'is_enable']
+    fields = ['title', 'file_type', 'file', 'is_enable']
     extra = 0
 
 @admin.register(Product)
-class ProductAdmin(admin.ModelAdmin):
+class ProductAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     list_display = ['title', 'is_enable', 'created_time']
     list_filter = ['is_enable']
     search_fields = ['title']
